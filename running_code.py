@@ -1,4 +1,4 @@
-from Simulation_class import Simulation
+from Simulation import Simulation
 '''
 There are different adjustments you can make to the Simulation.
 
@@ -19,7 +19,7 @@ since more relaible methods of integration like ode45 and monto carlo take a lot
 # calls the simulation with 3 agents, 1000 timesteps, and the leap_frog methode 
 # for integration and the standart square room
 
-sim = Simulation(num_individuals=4, num_steps=500, method="leap_frog", room_size=20, room="square")
+sim = Simulation()
 sim.fill_room()                 # fills the spawn zone with random people
 sim.run()                       # runs the simulation
 sim.show(wait_time=50, sim_size=800)   # displays the solutions to the simulations in pygame with

@@ -9,13 +9,13 @@ class Room:
       self.wallshere = False
       self.door_size = 1
       if num_of_doors == 1:
-          self.destination = np.array([[room_size + 0.5, room_size / 2]])  # destination the agenst want to go
+          self.destination = np.array([[self.room_size + 0.5, self.room_size / 2]])  # destination the agenst want to go
           self.num_walls = 5
-          self.walls = np.array([[[0, 0], [0, room_size]],  # Y
-                                 [[0, room_size], [room_size, room_size]],  #
-                                 [[room_size, room_size], [room_size, room_size / 2 + self.door_size / 2]],  # wall 4
-                                 [[room_size, room_size / 2 - self.door_size / 2], [room_size, 0]],  # wall 4
-                                 [[room_size, 0], [0, 0]]])  # wall 5
+          self.walls = np.array([[[0, 0], [0, self.room_size]],  # Y
+                                 [[0, self.room_size], [self.room_size, self.room_size]],  #
+                                 [[self.room_size, self.room_size], [self.room_size, self.room_size / 2 + self.door_size / 2]],  # wall 4
+                                 [[self.room_size, self.room_size / 2 - self.door_size / 2], [self.room_size, 0]],  # wall 4
+                                 [[self.room_size, 0], [0, 0]]])  # wall 5
           # agents spawn with x and y position between 1 and (room_size-1)
           self.spawn_zone = np.array([[1, self.room_height - 1], [1, self.room_width - 1]])
 

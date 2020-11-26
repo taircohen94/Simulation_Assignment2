@@ -22,13 +22,13 @@ them with with the function "Show"'''
 
 
 class Simulation:
-    def __init__(self, num_individuals=1, num_steps=9000,
+    def __init__(self, num_individuals=2, num_steps=9000,
                  tau=0.01, v_des=1.5, num_of_doors=1,
                  room_width=15, room_height=15):
 
         std_deviation = 0.07
-        variation = np.random.normal(loc=1, scale=std_deviation, size=(
-        1, num_individuals))  # is late used to make the agents differ in weight and size
+        variation = np.random.normal(loc=1, scale=std_deviation,
+                                     size=(1, num_individuals))  # is late used to make the agents differ in weight and size
 
         # Constants
         self.L = room_width * room_height  # size of square room (m)
@@ -48,7 +48,7 @@ class Simulation:
 
         # other
         self.room = Room(room_width, room_height, num_of_doors)  # kind of room the simulation runs in
-        self.method = getattr(Integrators, method)  # method used for integration
+        # self.method =   # method used for integration
         self.diff_equ = Diff_Equ(self.N, self.L, self.tau, self.room, self.radii,
                                  self.m)  # initialize Differential equation
 
