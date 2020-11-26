@@ -2,10 +2,13 @@ import numpy as np
 
 class Room:
 
-    def __init__(self, width, height, num_of_doors=1, center=False):
+    def __init__(self, width, height, num_of_doors=1):
         self.room_height = height
         self.room_width = width
         self.room_size = self.room_height * self.room_width
+
+
+
 
 
 if __name__ == '__main__':
