@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from Simulation import Simulation
 '''
 There are different adjustments you can make to the Simulation.
@@ -19,7 +21,23 @@ since more relaible methods of integration like ode45 and monto carlo take a lot
 # calls the simulation with 3 agents, 1000 timesteps, and the leap_frog methode 
 # for integration and the standart square room
 
-sim = Simulation()
-sim.fill_room()                 # fills the spawn zone with random people
-sim.run()                       # runs the simulation
-sim.show(wait_time=50, sim_size=800)   # displays the solutions to the simulations in pygame with
+def take_time(string_time):
+    now = datetime.now()
+    time = now.strftime("%H:%M:%S")
+    print(string_time, " time:", time)
+
+
+def simulating_proccess(num_of_idividuals, center=False):
+    take_time("Start " + str(count_individuals))
+    sim = Simulation(num_individuals=num_of_idividuals, num_steps=9000, center=center)
+    sim.fill_room()  # fills the spawn zone with random people
+    sim.run()  # runs the simulation
+    take_time("End " + str(count_individuals))
+    sim.show(wait_time=50, sim_size=600)   # displays the solutions to the simulations in pygame with
+
+
+if __name__ == '__main__':
+
+    is_center = False
+    for count_individuals in [1]:
+        simulating_proccess(count_individuals, is_center)

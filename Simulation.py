@@ -25,7 +25,7 @@ class Simulation:
 
     def __init__(self, num_individuals=1, num_steps=9000,
                  tau=0.01, v_des=1.5, num_of_doors=1,
-                 room_width=15, room_height=15):
+                 room_width=15, room_height=15, center=False):
         num_individuals = num_individuals if num_individuals < MAX_INDIVIDUALS else MAX_INDIVIDUALS
         std_deviation = 0.07
         variation = np.random.normal(loc=1, scale=std_deviation, size=(
@@ -38,9 +38,9 @@ class Simulation:
         self.num_steps = num_steps  # number of steps for integration
 
         # Agent information
-        self.radii = 0.4 * (np.ones(self.N) * variation).squeeze()  # radii of pedestrians (m)
+        self.radii = [0.4 * (np.ones(self.N) * variation).squeeze()] if self.N == 1 else 0.4 * (np.ones(self.N) * variation).squeeze()  # radii of pedestrians (m)
         self.v_des = v_des * np.ones(self.N)  # desired velocity (m/s)
-        self.m = 80 * (np.ones(self.N) * variation).squeeze()  # mass of pedestrians (kg)
+        self.m = 80 * (np.ones(self.N) * variation).squeeze() if self.N > 1 else [80 * (np.ones(self.N) * variation).squeeze()]  # mass of pedestrians (kg)
         self.forces = None  # forces on the agents
         self.agents_escaped = None  # number of agents escaped by timesteps
         self.v = np.zeros((2, self.N, self.num_steps))  # Three dimensional array of velocity
@@ -48,7 +48,7 @@ class Simulation:
             (2, self.N, self.num_steps))  # Three dimensional array of place: x = coordinates, y = Agent, z=Time
 
         # other
-        self.room = Room(room_width, room_height, num_of_doors)  # kind of room the simulation runs in
+        self.room = Room(room_width, room_height, num_of_doors, center=center)  # kind of room the simulation runs in
         self.method = self.leap_frog  # method used for integration
         self.diff_equ = Diff_Equ(self.N, self.L, self.tau, self.room, self.radii,
                                  self.m)  # initialize Differential equation
@@ -107,7 +107,7 @@ class Simulation:
         display_graph(self.agents_escaped, self.forces, self.m)
         display_events(self.r, self.room, wait_time, self.radii, sim_size, self.agents_escaped)
 
-    def leap_frog(y0, v0, f, N_steps, dt, room):
+    def leap_frog(self, y0, v0, f, N_steps, dt, room):
 
         tmp = 0
         agents_escaped = np.zeros(N_steps)
