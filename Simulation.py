@@ -6,10 +6,11 @@ from Position import Position
 
 MAX_INDIVIDUALS = 250
 
+
 class Simulation:
 
     def __init__(self, door_position, num_individuals=1, num_steps=9000, num_of_doors=1, room_width=15, room_height=15,
-                  center=False):
+                 center=False):
         self.num_individuals = num_individuals
         self.room_height = room_height
         self.room_width = room_width
@@ -29,7 +30,6 @@ class Simulation:
 
         sorted(entities, key=lambda entity: entity.position.get_dist(self.door_position))
         return entities
-
 
     def run(self):
         k = 0
@@ -73,7 +73,7 @@ class Simulation:
             if e != specified_entity:
                 other_dist_to_door = e.position.get_dist(self.door_position)
                 if specified_entity.reached_dest(e.position) and (specified_entity_dist_to_door >= other_dist_to_door):
-                   return True
+                    return True
 
         return False
 
