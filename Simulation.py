@@ -21,11 +21,22 @@ class Simulation:
 
     def generate_entities(self, num_of_entities, center=False):
         entities = []
+        inserted_pos = set()
         for index in range(num_of_entities):
             if not center:
-                pos = Position(randint(0, self.room_width), randint(0, self.room_height))
+                not_exist = False
+                pos = None
+                while not not_exist:
+                    not_exist = False
+                    x = randint(0, self.room_width)
+                    y = randint(0, self.room_height)
+                    if not (x, y) in inserted_pos:
+                        pos = Position(x, y)
+                        inserted_pos.add((x, y))
+                        not_exist = True
             else:
                 pos = Position(self.room_width / 2, self.room_height / 2)
+
             entities.append(Entity(pos))
 
         sorted(entities, key=lambda entity: entity.position.get_dist(self.door_position))
@@ -62,7 +73,9 @@ class Simulation:
                         entity.escaped_time = k
                         break
                 else:
-                    print("no one closer")
+                    pass
+                    # print("no one closer")
+
             # Increment Time Step
             k += 1
         return k, self.get_all_entities_positions(), all_velocities
