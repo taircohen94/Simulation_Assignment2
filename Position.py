@@ -22,6 +22,9 @@ class Position():
         self.y += other.y
         return copy.deepcopy(self)
 
+    def __str__(self):
+        return "("+str(self.x)+","+str(self.y)+")"
+
     def __sub__(self, other):
         self.x -= other.x
         self.y -= other.y

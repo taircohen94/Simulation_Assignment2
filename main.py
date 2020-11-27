@@ -4,7 +4,7 @@ from typing import List, Any
 from matplotlib import pyplot as plt
 from Position import Position
 from Simulation import Simulation
-from fitter import Fitter
+# from fitter import Fitter
 from BestFitDistribution import *
 
 def collapse(x1, x2, y1, y2):
@@ -61,46 +61,60 @@ if __name__ == '__main__':
     # ------------ end Q1.A ------------
 
     # ------------ Q1.B ------------
-    num_of_steps_list = []
-    all_positions_list = []
-    for i in range(200):
-        sim = Simulation(door_position=door_pos, room_width=room_width,
-                         room_height=room_height, center=False)
-        take_time("Start")
-        num_of_steps, all_pos, all_v = sim.run()
-        num_of_steps_list.append(num_of_steps)
-        all_positions_list.append(all_pos)
-        take_time("End " + str(num_of_steps) + " Steps")
-
-    max_steps = max(num_of_steps_list)
-    print("The max time to escape from the room is: " + str(max_steps))
-    # find the best fit distribution of the num of steps that takes to the entities to escape from a room
-    # f = Fitter(num_of_steps_list)
-    # f.fit()
-    # f.summary()
-    # f.plot_pdf()
-    run_distribution(num_of_steps_list)
+    # num_of_steps_list = []
+    # all_positions_list = []
+    # for i in range(200):
+    #     sim = Simulation(door_position=door_pos, room_width=room_width,
+    #                      room_height=room_height, center=False)
+    #     take_time("Start")
+    #     num_of_steps, all_pos, all_v = sim.run()
+    #     num_of_steps_list.append(num_of_steps)
+    #     all_positions_list.append(all_pos)
+    #     take_time("End " + str(num_of_steps) + " Steps")
+    #
+    # max_steps = max(num_of_steps_list)
+    # print("The max time to escape from the room is: " + str(max_steps))
+    # # find the best fit distribution of the num of steps that takes to the entities to escape from a room
+    # # f = Fitter(num_of_steps_list)
+    # # f.fit()
+    # # f.summary()
+    # # f.plot_pdf()
+    # run_distribution(num_of_steps_list)
 
     # ------------ end Q1.B ------------
 
     # ------------ end Q1.C ------------
 
-    collapse_counter = 0
-    for j in range(0, 199):
-        for k in range(j + 1, 200):
-            min_length = min(len(all_positions_list[j]), len(all_positions_list[k]))
-            for index in range(0, min_length):
-                if collapse(all_positions_list[j][index].x,
-                            all_positions_list[k][index].x,
-                            all_positions_list[j][index].y,
-                            all_positions_list[k][index].y):
-                    collapse_counter += 1
-
-    print(collapse_counter)
+    # collapse_counter = 0
+    # for j in range(0, 199):
+    #     for k in range(j + 1, 200):
+    #         min_length = min(len(all_positions_list[j]), len(all_positions_list[k]))
+    #         for index in range(0, min_length):
+    #             if collapse(all_positions_list[j][index].x,
+    #                         all_positions_list[k][index].x,
+    #                         all_positions_list[j][index].y,
+    #                         all_positions_list[k][index].y):
+    #                 collapse_counter += 1
+    #
+    # print(collapse_counter)
 
     # ------------ end Q1.C ------------
 
     # ------------ Q2.A ------------
+    num_of_steps_list_Q2A = []
+    all_positions_list_Q2A = []
+    for i in [20, 50, 100, 200]:
+        # door position like 1A - (room_width, room_height / 2)
+        sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
+                         room_height=room_height, center=False)
+        take_time("Start Simulation with " + str(i) + " entities")
+
+        num_of_steps, all_pos, all_v = sim.run()
+        num_of_steps_list_Q2A.append(num_of_steps)
+        all_positions_list_Q2A.append(all_pos)
+        take_time("End Simulation with " + str(i) + " entities ")
+        print(all_positions_list_Q2A)
+
     # ------------ end Q2.A ------------
 
     # ------------ Q2.B ------------
