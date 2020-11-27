@@ -101,24 +101,26 @@ if __name__ == '__main__':
     # ------------ end Q1.C ------------
 
     # ------------ Q2.A ------------
-    num_of_steps_list_Q2A = []
-    all_positions_list_Q2A = []
-    for i in [20, 50, 100, 200]:
-        sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
-                         room_height=room_height, center=False)
-        take_time("Start Simulation with " + str(i) + " entities")
-
-        num_of_steps, all_pos, all_v = sim.run()
-        num_of_steps_list_Q2A.append(num_of_steps)
-        all_positions_list_Q2A.append(all_pos)
-        take_time("End Simulation with " + str(i) + " entities , num of steps:"+str(num_of_steps))
+    # num_of_steps_list_Q2A = []
+    # all_positions_list_Q2A = []
+    # for i in [20, 50, 100, 200]:
+    #     sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
+    #                      room_height=room_height, center=False)
+    #     take_time("Start Simulation with " + str(i) + " entities")
+    #
+    #     num_of_steps, all_pos, all_v = sim.run()
+    #     num_of_steps_list_Q2A.append(num_of_steps)
+    #     all_positions_list_Q2A.append(all_pos)
+    #     take_time("End Simulation with " + str(i) + " entities , num of steps:"+str(num_of_steps))
 
     # ------------ end Q2.A ------------
 
     # ------------ Q2.B ------------
+
     # ------------ end Q2.B ------------
 
     # ------------ Q2.C ------------
+
     # ------------ end Q2.C ------------
 
     # ------------ Q3.A ------------

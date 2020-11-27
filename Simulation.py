@@ -10,14 +10,16 @@ MAX_INDIVIDUALS = 250
 class Simulation:
 
     def __init__(self, door_position, num_individuals=1, num_steps=9000, num_of_doors=1, room_width=15, room_height=15,
-                 center=False):
+                 center=False, oldppl=False):
         self.num_individuals = num_individuals
         self.room_height = room_height
         self.room_width = room_width
         self.door_position = door_position
+        self.oldppl = oldppl
         self.entities = self.generate_entities(num_individuals, center)
         self.max_step = num_steps
         self.escaped = []
+
 
     def generate_entities(self, num_of_entities, center=False):
         entities = []
