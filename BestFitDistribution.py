@@ -105,7 +105,7 @@ def run_distribution(data):
     data = pd.DataFrame(data, columns=['time_steps'])
     # Plot for comparison
     plt.figure(figsize=(12, 8))
-    ax = data.plot(density=True, kind='hist', bins=50, alpha=0.5, color='r')
+    ax = data.plot(kind='hist', bins=50, alpha=0.5)
     # Save plot limits
     dataYLim = ax.get_ylim()
 
@@ -126,8 +126,7 @@ def run_distribution(data):
     # # Display
     plt.figure(figsize=(12, 8))
     ax = pdf.plot(lw=2, label='PDF', legend=True)
-    data.plot(density=True, kind='hist', bins=50, alpha=0.5, label='Data', legend=True, ax=ax)
-
+    data.plot(kind='hist', bins=50, alpha=0.5, label='Data', legend=True, ax=ax)
     param_names = (best_dist.shapes + ', loc, scale').split(', ') if best_dist.shapes else ['loc', 'scale']
     param_str = ', '.join(['{}={:0.2f}'.format(k, v) for k, v in zip(param_names, best_fit_params)])
     dist_str = '{}({})'.format(best_fit_name, param_str)
