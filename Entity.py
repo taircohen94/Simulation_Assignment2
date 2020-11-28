@@ -32,14 +32,14 @@ class Entity:
 
         return e
 
-    # def reached_dest(self, dest):
-    #     return self.position.get_dist(dest) <= 0.5
+    def reached_dest(self, dest):
+        return self.position.get_dist(dest) <= 0.5
 
-    def reached_dest(self, door_location):
-        if door_location.x == 15:
-            if self.position.x >= door_location.x and abs(self.position.y-door_location.y) <= 0.5:
-                return True
-        return False
+    # def reached_dest(self, door_location):
+    #     if door_location.x == 15 or door_location.x == 0:
+    #         if self.position.x >= door_location.x and abs(self.position.y-door_location.y) <= 0.5:
+    #             return True
+    #     return False
 
     def track_position(self):
         self.tracked_positions.append(self.position)
