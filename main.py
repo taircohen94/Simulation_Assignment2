@@ -101,6 +101,7 @@ if __name__ == '__main__':
     # ------------ end Q1.C ------------
 
     # ------------ Q2.A ------------
+    # print("#############################  Q2.A   #########################")
     # num_of_steps_list_Q2A = []
     # all_positions_list_Q2A = []
     # for i in [20, 50, 100, 200]:
@@ -108,49 +109,52 @@ if __name__ == '__main__':
     #                      room_height=room_height, center=False)
     #     take_time("Start Simulation with " + str(i) + " entities")
     #
-    #     num_of_steps, all_pos, all_v = sim.run()
+    #     num_of_steps, all_pos, all_v, escaped = sim.run()
     #     num_of_steps_list_Q2A.append(num_of_steps)
     #     all_positions_list_Q2A.append(all_pos)
-    #     take_time("End Simulation with " + str(i) + " entities , num of steps:"+str(num_of_steps))
+    #     take_time("End Simulation with " + str(i) + " entities , num of steps: "+str(num_of_steps) + " , Escaped: "+str(len(escaped)))
 
     # ------------ end Q2.A ------------
 
     # ------------ Q2.B ------------
-    # num_of_steps_list_Q2A = []
-    # all_positions_list_Q2A = []
-    # num_of_ppl = 20
-    # v0 = 0.1
-    # dict_v_k = {}
-    # for i in range(0, 20):
-    #     print(i)
-    #     v = v0 + i * 0.1
-    #     sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
-    #                      room_height=room_height, center=False, v0=v)
-    #     # take_time("Start Simulation with " + str(i) + " entities")
-    #
-    #     num_of_steps, all_pos, all_v = sim.run()
-    #     dict_v_k[v] = num_of_steps
-    #     # take_time("End Simulation with " + str(i) + " entities , num of steps: " + str(num_of_steps))
-    #
-    # lists = sorted(dict_v_k.items())  # sorted by key, return a list of tuples
-    #
-    # x, y = zip(*lists)  # unpack a list of pairs into two tuples
-    #
-    # plt.plot(x, y)
-    # plt.show()
+    print("#############################  Q2.B   #########################")
+    num_of_steps_list_Q2A = []
+    all_positions_list_Q2A = []
+    num_of_ppl = 20
+    v0 = 0.1
+    dict_v_k = {}
+    for i in range(0, 100):
+        print(i)
+        v = v0 + i * 0.1
+        sim = Simulation(num_individuals=50, door_position=door_pos, room_width=room_width,
+                         room_height=room_height, center=False, v0=v)
+        # take_time("Start Simulation with " + str(i) + " entities")
+
+        num_of_steps, all_pos, all_v, escaped = sim.run()
+        dict_v_k[v] = num_of_steps
+        # take_time("End Simulation with " + str(i) + " entities , num of steps: " + str(num_of_steps))
+
+    lists = sorted(dict_v_k.items())  # sorted by key, return a list of tuples
+
+    x, y = zip(*lists)  # unpack a list of pairs into two tuples
+
+    plt.plot(x, y)
+    plt.show()
 
     # ------------ end Q2.B ------------
 
-    # ------------ Q2.C ------------
+    # # ------------ Q2.C ------------
+    # print("#############################  Q2.C   #########################")
+    #
     # num_of_steps_list_Q2A = []
     # all_positions_list_Q2A = []
     #
-    # for i in [20] * 100:
+    # for i in [50] * 100:
     #     sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
     #                      room_height=room_height, center=False, oldppl=True)
     #     # take_time("Start Simulation with " + str(i) + " entities")
     #
-    #     num_of_steps, all_pos, all_v = sim.run()
+    #     num_of_steps, all_pos, all_v, escaped = sim.run()
     #     num_of_steps_list_Q2A.append(num_of_steps)
     #     all_positions_list_Q2A.append(all_pos)
     #     # take_time("End Simulation with " + str(i) + " entities , num of steps: " + str(num_of_steps))
@@ -159,27 +163,71 @@ if __name__ == '__main__':
     # nine_list = [x for x in num_of_steps_list_Q2A if x == 9000]
     # print((sum(num_of_steps_list_Q2A) - sum(nine_list) )/ (len(num_of_steps_list_Q2A) - len(nine_list)))
     # print(len(nine_list))
-
-        # ------------ end Q2.C ------------
+    #
+    #     # ------------ end Q2.C ------------
 
     # ------------ Q3.A ------------
-    num_of_steps_list_Q2A = []
-    all_positions_list_Q2A = []
-    door2_pos = Position(0, room_height / 2)
-
-    for i in [20] * 10:
-        sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
-                         room_height=room_height, center=False, oldppl=False, door2_pos=door2_pos)
-        take_time("Start Simulation with " + str(i) + " entities")
-
-        num_of_steps, all_pos, all_v = sim.run()
-
-        take_time("End Simulation with " + str(i) + " entities , num of steps: " + str(num_of_steps))
+    # num_of_steps_list_Q2A = []
+    # all_positions_list_Q2A = []
+    # door2_pos = Position(0, room_height / 2)
+    #
+    # for i in [20, 50, 100, 200]:
+    #     sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
+    #                      room_height=room_height, center=False, oldppl=False, door2_pos=door2_pos)
+    #     take_time("Start Simulation with " + str(i) + " entities")
+    #
+    #     num_of_steps, all_pos, all_v, escaped = sim.run()
+    #
+    #     take_time("End Simulation with " + str(i) + " entities , num of steps: " + str(num_of_steps) + " , Escaped: " + str(len(escaped)))
 
     # ------------ end Q3.A ------------
 
     # ------------ Q3.B ------------
+    # num_of_steps_list_Q2A = []
+    # all_positions_list_Q2A = []
+    # door2_pos = Position(0, room_height / 2)
+    #
+    # for i in [20] * 10:
+    #     sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
+    #                      room_height=room_height, center=False, oldppl=False, door2_pos=door2_pos, entity_know_both_door=False)
+    #     take_time("Start Simulation with " + str(i) + " entities")
+    #
+    #     num_of_steps, all_pos, all_v, escaped = sim.run()
+    #
+    #     take_time("End Simulation with " + str(i) + " entities , num of steps: " + str(num_of_steps) + " , Escaped: " + str(len(escaped)))
+
     # ------------ end Q3.B ------------
 
     # ------------ Q3.C ------------
+    # num_of_steps_list_Q2A = []
+    # all_positions_list_Q2A = []
+    # door2_pos = Position(0, room_height / 2)
+    #
+    # for i in [20] * 10:
+    #     sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
+    #                      room_height=room_height, center=False, oldppl=False             )
+    #     take_time("Start Simulation with " + str(i) + " entities")
+    #
+    #     num_of_steps, all_pos, all_v, escaped = sim.run3c()
+    #
+    #     take_time("End Simulation with " + str(i) + " entities , num of steps: " + str(num_of_steps) + " , Escaped: " + str(len(escaped)))
+
     # ------------ end Q3.C ------------
+
+    # ------------ Q4.C ------------
+    # print("#############################  Q4   #########################")
+    # num_of_steps_list_Q2A = []
+    # all_positions_list_Q2A = []
+    # door2_pos = Position(0, room_height / 2)
+    #
+    # for i in [20, 50, 100, 200]:
+    #     sim = Simulation(num_individuals=i, door_position=door_pos, room_width=room_width,
+    #                      room_height=room_height, center=False, door2_pos=door2_pos)
+    #     take_time("Start Simulation with " + str(i) + " entities")
+    #
+    #     num_of_steps, all_pos, all_v, escaped = sim.run()
+    #     num_of_steps_list_Q2A.append(num_of_steps)
+    #     all_positions_list_Q2A.append(all_pos)
+    #     take_time("End Simulation with " + str(i) + " entities , num of steps: "+str(num_of_steps) + " , Escaped: "+str(len(escaped)))
+
+    # ------------ end Q4 ------------

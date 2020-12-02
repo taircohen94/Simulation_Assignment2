@@ -5,7 +5,7 @@ from Position import Position
 
 class Entity:
 
-    def __init__(self, initial_position, v0=1.5):
+    def __init__(self, initial_position, v0=1.5, num_of_doors=1):
         self.position = initial_position
         self.v0 = v0
         self.acc_time = 0.5
@@ -14,6 +14,8 @@ class Entity:
         self.tracked_positions = []
         self.escaped_time = 0
         self.id = uuid.uuid4()
+        self.num_of_doors = num_of_doors
+        self.ei = Position(0,0)
 
     def dvi_dt(self, ei0):
         new_v = Position(0, 0)
@@ -32,8 +34,8 @@ class Entity:
 
         return e
 
-    def reached_dest(self, dest):
-        return self.position.get_dist(dest) <= 0.5
+    def reached_dest(self, dest, max_radius=0.5):
+        return self.position.get_dist(dest) <= max_radius
 
     # def reached_dest(self, door_location):
     #     if door_location.x == 15 or door_location.x == 0:
